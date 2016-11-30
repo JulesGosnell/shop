@@ -20,7 +20,7 @@ class ShopSpec extends FlatSpec with TypeCheckedTripleEquals {
     assert(shop.checkOutByName("Apple" :: "Apple" :: "Lemon" :: "Orange" :: "Apple" :: "Lime" :: Nil) === (BigDecimal(2.05), List("Lemon", "Lime")), "checkoutByName failed")
   }
 
-  import Shop._
+  import SpecialOffer._
 
   "buy-one-get-one-free" should "remove free items from basket" in {
     assert(buyOneGetOneFree(List()).length === 0)
