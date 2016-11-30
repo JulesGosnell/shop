@@ -2,12 +2,12 @@ package shop
 
 case class Item(name: String, cost: BigDecimal)
 
-case class SpecialOffer(itemName: String, f: List[Item] => List[Item])
+case class SpecialOffer(itemName: String, algorithm: List[Item] => List[Item])
 
 object Shop {
 
-  def bogof(items: List[Item]): List[Item] = items match {
-    case i1 :: i2 :: is => i1 :: bogof(is)
+  def buyOneGetOneFree(items: List[Item]): List[Item] = items match {
+    case i1 :: i2 :: is => i1 :: buyOneGetOneFree(is)
     case is => is
   }
 
@@ -17,7 +17,7 @@ object Shop {
   }
 
   def applySpecialOffers(offers: Map[String, List[SpecialOffer]], items: Map[String, List[Item]]): List[Item] =
-    items.map { case (k, v) => k -> offers.getOrElse(k, Nil).foldLeft(v)((is, so) => so.f(is))}.values.flatten.toList
+    items.map { case (k, v) => k -> offers.getOrElse(k, Nil).foldLeft(v)((is, so) => so.algorithm(is))}.values.flatten.toList
 
 }
 
