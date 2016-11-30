@@ -27,7 +27,7 @@ case class Shop(stock: List[Item], specialOffers: List[SpecialOffer] = Nil) {
 
   val specialOffersByItemName: Map[String, List[SpecialOffer]] = specialOffers.groupBy(_.itemName)
 
-  // sum 'items' by 'cost' - NYI
+  // sum 'items' by 'cost'
   def checkOut(items: List[Item]): BigDecimal = applySpecialOffers(specialOffersByItemName, items.groupBy(_.name)).map(_.cost).fold(BigDecimal(0))(_ + _)
 
   val stockByName: Map[String, Item] = stock.foldLeft(Map.empty[String, Item]){ (acc, item) => acc + (item.name -> item)}
