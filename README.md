@@ -14,3 +14,7 @@ I didn't bother carrying around currency (GBP / £) with the amounts represented
 
 I haven't hardwired details like the stock and their prices into the production code, but have put these into the test code. In production, I would expect these details to be loaded from some other system and subject to frequent change.
 
+Making Shop accept input as a list of strings feels wrong. I think that this would sit better in an e.g. input layer, rather than in Shop.
+
+I've interpreted the word 'system' in 'build a system' as a system of s/w components, not as  a CLI program. Maybe the latter was what was expected, hence the string input ? This would require the simple addition of a 'main()' function in Shop and the transplanting of the initialising of a shop and the calling of checkOutByName from the test code - only a cuple of lines of code.
+
