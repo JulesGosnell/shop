@@ -20,7 +20,7 @@ case class SpecialOffer(itemName: String, algorithm: List[Item] => List[Item])
 
 object Shop {
 
-  def removeFreeItemsFromBasket(offers: Map[String, List[SpecialOffer]], basket: List[Item]): List[Item] =
+  def basketWithoutFreeItems(offers: Map[String, List[SpecialOffer]], basket: List[Item]): List[Item] =
     basket.groupBy(_.name).map { case (k, v) => k -> offers.getOrElse(k, Nil).foldLeft(v)((is, so) => so.algorithm(is))}.values.flatten.toList
 
 }
@@ -32,7 +32,7 @@ case class Shop(stock: List[Item], specialOffers: List[SpecialOffer] = Nil) {
   val specialOffersByItemName: Map[String, List[SpecialOffer]] = specialOffers.groupBy(_.itemName)
 
   // sum 'items' by 'cost'
-  def checkOut(basket: List[Item]): BigDecimal = removeFreeItemsFromBasket(specialOffersByItemName, basket).map(_.cost).fold(BigDecimal(0))(_ + _)
+  def checkOut(basket: List[Item]): BigDecimal = basketWithoutFreeItems(specialOffersByItemName, basket).map(_.cost).fold(BigDecimal(0))(_ + _)
 
   val stockByName: Map[String, Item] = stock.foldLeft(Map.empty[String, Item]){ (acc, item) => acc + (item.name -> item)}
 
