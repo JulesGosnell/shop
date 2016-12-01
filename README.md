@@ -18,3 +18,5 @@ Making Shop accept input as a list of strings feels wrong. I think that this wou
 
 I've interpreted the word 'system' in 'build a system' as a system of s/w components, not as  a CLI program. Maybe the latter was what was expected, hence the string input ? This would require the simple addition of a 'main()' function in the Shop companion object and the transplanting of the initialising of a shop and the calling of checkOutByName from the test code - only a couple of lines of code.
 
+I'd like to have tested Shop.basketWithoutFreeItems() directly, but I also needed to test that its fn-ality was wired into Shop.checkOut() and checkOutByName(). I decided to allow these tests to subsume the direct one. With a little more time, perhaps I could have decomposed the problem further so that all units and their integration could have been tested without duplication.
+
