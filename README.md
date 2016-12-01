@@ -1,12 +1,9 @@
-# Shop
+# Shop - A short piece of Scala demo code.
 
 [![Continuous Integration status](https://secure.travis-ci.org/JulesGosnell/shop.png)](http://travis-ci.org/JulesGosnell/shop)
 
-## Introduction
 
-A short piece of Scala demo code.
-
-Thoughts:
+## Thoughts
 
 I've used BigDecimal to represent money - this is a habit from working in financial institutions. Float would have sufficed for this example.
 
